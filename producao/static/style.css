@@ -1,0 +1,140 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #F8FAFC;
+    overflow-y: clip;
+}
+
+.navbar {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+breadcrumb {
+    align-items: baseline;
+}
+
+.breadcrumb_pcp {
+    display:flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 10px 10px 0px 10px;
+}
+
+.principal_div {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-grow: 2;
+    overflow-y: auto;
+    height: 100%;
+    padding: 10px 0px 0px 0px;
+}
+
+.filtro_div {
+    width: 200px;
+    box-shadow: 3px -1px 8px 0 rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+    border-radius: 0 0.5rem 0 0;
+    padding: 13px;
+    display: none;
+
+}
+
+.filtro_div_title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itens_div {
+    flex-grow: 1;
+    padding: 0px 4px 0px 4px;
+    margin: 4px;
+}
+
+.acoes_div {
+    width: 220px;
+    background-color: #FFFFFF;
+    border-radius: 0.5rem 0 0 0;
+    box-shadow: -3px 0px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 57px);
+}
+
+.lista_itens {
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: #FFFFFF;
+    margin: 16px 4px 0 4px;
+}
+
+#lugar_da_lista {
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: #FFFFFF;
+    margin: 16px 4px 0 4px;
+    max-height: calc(100% - 80px);
+    overflow-y: auto;
+    overflow-x: clip;
+}
+
+tr {
+  cursor: pointer;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+#FiltrosSelecionados {
+    margin-left: 16px;
+    span {
+        font-size: 0.8rem;
+    }
+    a {
+        color: #0d6efd;
+        cursor: pointer;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+}
+
+#divSeletorData * {
+  --bs-btn-color: var(--bs-primary);
+}
+
+#calendarioIcon {
+    --bs-btn-color: var(--bs-primary);
+}
+
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.loading #loadingOverlay {
+    display: flex;
+}
+
+body:not(.loading) #loadingOverlay {
+    display: none;
+}

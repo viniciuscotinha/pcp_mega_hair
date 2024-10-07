@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="breadcrumb_pcp">
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb m-0" style="align-items: baseline;">
+        <li class="breadcrumb-item "><a class="link-secondary" href="/">Início</a></li>
+        <li class="breadcrumb-item active fs-5" aria-current="page"><a class="link-secondary text-decoration-none fw-bold">Serviço</a></li>
+      </ol>
+    </nav>
+    <div class="d-grid gap-1 col-10 mx-10" style="max-width: 210px;">
+      <button class="btn btn-primary btn-sm rounded-3 fw-bold" type="button">Adicionar serviço</button>
+    </div>
+</div>
+<div class="principal_div">
+    <div class="filtro_div">
+        <div class="filtro_div_title">
+            <i class="bi bi-funnel-fill " style="color: gray;"></i><div class="text fw-bold" style="width:100%; color: gray; margin-left: 8px;">Filtrar</div><button type="button" class="btn-close" aria-label="Close"  onclick="close_filter()"></button>
+        </div>
+    </div>
+    <div class="itens_div">
+        <div class="d-flex">
+            <div class=" d-flex" style="width:60%">
+                <button id="botao_filtro" class="btn btn-outline-primary btn-sm rounded-3" onclick="open_filter()" style="margin: 0 4px 0 4px;"><i class="bi bi-funnel-fill"></i> </button>
+                <input onchange="pesquisar()" id="caixa_pesquisa" class="form-control form-control-sm rounded-3" style="margin: 0 4px 0 4px;"  placeholder="Pesquise o nome aqui...">
+                <button onclick="pesquisar()" id="botao_pesquisa" class="btn btn-outline-primary btn-sm rounded-3" style="margin: 0 4px 0 4px;"><i class="bi bi-search" ></i></button>
+                <button class="btn btn-outline-primary btn-sm rounded-3" style="margin: 0 4px 0 4px;"><i class="bi bi-calendar-week-fill"></i></button>
+            </div>
+            <div style="display: flex; justify-content: flex-end; align-items: center; width: 40%;">
+                <button class="btn btn-outline-primary btn-sm rounded-3" style="margin: 0 4px 0 4px;"><i class="bi bi-printer-fill"></i></button>
+                <button class="btn btn-outline-danger btn-sm rounded-3" style="margin: 0 4px 0 4px;"><i class="bi bi-trash-fill"></i></button>
+            </div>
+        </div>
+        <div class="lista_itens">
+            Lista
+        </div>
+    </div>
+
+    <div class="acoes_div">
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+<div class="lista_itens">
+    <table class="table table-hover table-responsive" id="tabelas_itens">
+        <thead>
+            <tr>
+                <th><input onclick="selecionarTodos()" id="selecionarTodos" class="form-check-input itens" type="checkbox" value="" style="cursor:pointer;"></th>
+                <th>Nome</th>
+                <th>Data de criação</th>
+                <th>Criado por</th>
+                <th>Data de modificação</th>
+                <th>Modificado por</th>
+                <th>Em estoque</th>
+            </tr>
+        </thead>
+        <tbody id="lista_lotes">
+            {% for lote in consulta['itens']: %}
+                <tr id_lote="{{ lote.lote_id }}">
+                {% if (lote.status == "Ativo") %}
+                    <td><input onclick="limparTodos()" name="selecionavel" class="form-check-input itens" type="checkbox" value="" id="lote_item_{{ lote.lote_id }}" style="cursor:pointer;"></td>
+                {% else %}
+                    <td><i class="bi bi-x" style="color:#DC3545;"></i></td>
+                {% endif %}
+                    <td onclick="getLoteById({{ lote.lote_id }})">{{lote.prefixo}}0{{lote.sufixo}}</td>
+                    <td onclick="getLoteById({{ lote.lote_id }})">{{ '{:%d/%m/%Y %H:%M}'.format(lote.criado_em) }}</td>
+                    <td onclick="getLoteById({{ lote.lote_id }})">{{ lote.usuario_criador.nome }}</td>
+                    <td onclick="getLoteById({{ lote.lote_id }})">{{ '{:%d/%m/%Y %H:%M}'.format(lote.modificado_em) }}</td>
+                    <td onclick="getLoteById({{ lote.lote_id }})">{{ lote.usuario_modificador.nome }}</td>
+                    <td onclick="getLoteById({{ lote.lote_id }})">0kg</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container d-flex justify-content-center m-2 {{ 'd-none' if consulta['total_paginas'] == 1 or consulta['total_paginas'] == 0 else ''}}">
+    <div>
+        <button onclick="pegarPaginaLote(1)" class='btn btn-light btn-sm {{ "disabled" if consulta["pagina_atual"] == 1 else "" }}'>Primeira</button>
+        <button onclick="pegarPaginaLote({{ consulta['pagina_atual'] - 1 }})" class='btn btn-light btn-sm {{ "disabled" if consulta["pagina_atual"] == 1 else "" }}'>Anterior</button>
+    </div>
+    <div class="dropup-center dropup">
+        <button class="btn btn-outline-secondary dropdown-toggle btn-sm"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ consulta['pagina_atual'] }}</button>
+        <ul class="dropdown-menu">
+            {% for numero in range(consulta['total_paginas'], 0, -1) %}
+                <li><a onclick="pegarPaginaLote({{ numero }})" class="dropdown-item {{ 'active' if consulta['pagina_atual'] == numero else '' }}">{{ numero }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <button onclick="pegarPaginaLote({{ consulta['pagina_atual'] + 1 }})" class='btn btn-light btn-sm {{ "disabled" if consulta["pagina_atual"] == consulta["total_paginas"] else "" }}'>Próxima</button>
+        <button onclick="pegarPaginaLote({{ consulta['total_paginas'] }})" class='btn btn-light btn-sm  {{ "disabled" if consulta["pagina_atual"] == consulta["total_paginas"] else "" }}'>Última</button>
+    </div>
+</div>

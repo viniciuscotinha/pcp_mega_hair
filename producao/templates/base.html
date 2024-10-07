@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ nome_pagina }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body class="loading">
+    <nav class="navbar navbar-expand-lg " style="background-color: #FFFFFF;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" width="158" height="30" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cadastros
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/lotes">Lotes</a></li>
+                <li><a class="dropdown-item" href="/colaboradores">Colaboradores</a></li>
+                <li><a class="dropdown-item" href="/produtos">Produtos</a></li>
+                <li><a class="dropdown-item" href="/processos">Processos</a></li>
+                <li><a class="dropdown-item" href="/departamentos">Departamentos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/servicos">Serviços</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <div class="container-fluid" style="display: flex; justify-content: flex-end;">
+            <div>
+                <i class="bi bi-person-fill"></i>
+                {{ current_user.nome }}
+            </div>
+            <button onclick="window.location=('/logout')" class="btn"><i class="bi bi-box-arrow-right"></i></button>
+        </div>
+    </nav>
+    <div id="content">{% block content%}{% endblock%}</div>
+    <div class="toast-container top-0 end-0 p-3" id="toastContainer"></div>
+<div class="toast" id="toast" data-bs-delay="1500">
+    <div class="toast-header">
+        <i class="bi-info-circle me-1"></i>
+        <strong class="me-auto">Informação</strong>
+        <button class="btn-close ms-auto" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-body">
+        Mensagem
+    </div>
+</div>
+<div id="loadingOverlay" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+    </div>
+</div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
